@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { SeedModule } from './seed/seed.module';
 import { AuthModule } from './auth/auth.module';
 import { CategoriesModule } from './categories/categories.module';
 import { DatabaseModule } from './database/database.module';
@@ -18,6 +19,7 @@ import { SyncModule } from './sync/sync.module';
     PaymentMethodsModule,
     TransactionsModule,
     SyncModule,
+    SeedModule,
   ],
 })
 export class AppModule {}

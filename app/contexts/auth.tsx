@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { api, getToken, removeToken, setToken } from '@/lib/api';
+import { syncDatabase } from '@/lib/database/sync';
 
 type User = { id: string; name: string; email: string; avatarUrl: string | null };
 
@@ -30,6 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await setToken(accessToken);
     const u = await api.auth.me();
     setUser(u);
+    syncDatabase().catch(() => {});
   }, []);
 
   const register = useCallback(async (name: string, email: string, password: string) => {
@@ -37,6 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await setToken(accessToken);
     const u = await api.auth.me();
     setUser(u);
+    syncDatabase().catch(() => {});
   }, []);
 
   const logout = useCallback(async () => {

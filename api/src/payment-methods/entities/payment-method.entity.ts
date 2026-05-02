@@ -4,7 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
@@ -13,7 +13,7 @@ export type PaymentMethodType = 'CREDIT' | 'DEBIT' | 'PIX' | 'CASH';
 
 @Entity('payment_methods')
 export class PaymentMethod {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ type: 'varchar' })
   id: string;
 
   @Column({ name: 'user_id' })

@@ -10,6 +10,7 @@ export async function syncDatabase() {
 
   await synchronize({
     database,
+    sendCreatedAsUpdated: true,
     pullChanges: async ({ lastPulledAt }) => {
       const res = await fetch(`${BASE_URL}/sync/pull?lastPulledAt=${lastPulledAt ?? 0}`, {
         headers: { Authorization: `Bearer ${token}` },
