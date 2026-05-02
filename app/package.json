@@ -10,6 +10,7 @@
     "clean": "rm -rf .expo node_modules"
   },
   "dependencies": {
+    "@nozbe/watermelondb": "^0.28.0",
     "@react-navigation/native": "^7.0.0",
     "@rn-primitives/portal": "~1.4.0",
     "@rn-primitives/slot": "^1.4.0",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
+    "@babel/plugin-proposal-decorators": "^7.29.0",
     "@types/react": "~19.2.10",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",

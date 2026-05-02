@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\joao.silva\\\\Documents\\\\Projetos\\\\dombills\" -Recurse -Force)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(cd c:\\\\\\\\Users\\\\\\\\joao.silva\\\\\\\\Documents\\\\\\\\Projetos\\\\\\\\dombills)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\joao.silva\\\\Documents\\\\Projetos\\\\dombills\" | Where-Object { $_.PSIsContainer } | Select-Object Name)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\joao.silva\\\\Documents\\\\Projetos\\\\dombills\\\\app\" -Exclude node_modules -Recurse -Force | Select-Object FullName | ForEach-Object { $_.FullName.Replace\\('C:\\\\Users\\\\joao.silva\\\\Documents\\\\Projetos\\\\dombills\\\\app\\\\', ''\\) })",
+      "PowerShell(ls -la \"C:\\\\Users\\\\joao.silva\\\\Documents\\\\Projetos\\\\dombills\\\\app\" | Where-Object { $_.Name -ne 'node_modules' })",
+      "Bash(Get-Content \"C:\\\\Users\\\\JOAO~1.SIL\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-joao-silva-Documents-Projetos-dombills\\\\6ea08084-3bfe-4152-8732-21b83533da45\\\\tasks\\\\bm6dr1jlo.output\" -Tail 30)",
+      "Bash(yarn add *)",
+      "Bash(npx expo *)",
+      "Bash(yarn install *)"
     ]
   }
 }

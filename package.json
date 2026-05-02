@@ -1,12 +1,8 @@
 {
   "name": "dombills-monorepo",
   "private": true,
-  "workspaces": [
-    "app",
-    "api"
-  ],
   "scripts": {
-    "app": "npm run dev --workspace=app",
-    "api": "npm run start:dev --workspace=api"
+    "app": "cd app && yarn dev",
+    "api": "cd api && yarn start:dev"
   }
 }
