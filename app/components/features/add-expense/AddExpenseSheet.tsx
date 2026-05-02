@@ -33,7 +33,7 @@ type FormData = {
   frequency: 'NONE' | 'MONTHLY' | 'WEEKLY';
 };
 
-export type AddExpenseSheetRef = { open: () => void };
+export type AddExpenseSheetRef = { open: (initialType?: 'EXPENSE' | 'REVENUE') => void };
 
 // ─── Picker Modal ─────────────────────────────────────────────────────────────
 
@@ -155,8 +155,8 @@ export const AddExpenseSheet = forwardRef<AddExpenseSheetRef>((_, ref) => {
   const selectedPaymentMethod = paymentMethods.find((p) => p.id === paymentMethodId);
 
   useImperativeHandle(ref, () => ({
-    open: () => {
-      reset();
+    open: (initialType?: 'EXPENSE' | 'REVENUE') => {
+      reset({ ...{ type: 'EXPENSE', description: '', amount: '', categoryId: '', paymentMethodId: '', installments: 1, isRecurring: false, frequency: 'NONE' }, type: initialType ?? 'EXPENSE' });
       setVisible(true);
     },
   }));

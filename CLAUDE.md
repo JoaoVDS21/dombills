@@ -209,6 +209,59 @@ Telas secundárias (stack modal ou push):
 - Prettier + Tailwind plugin (já configurado)
 - Nenhum comentário exceto WHY não óbvio
 
+## Telas e Jornada do Usuário
+
+### 1. Home (Dashboard de Controle)
+Ponto de entrada com visão imediata da saúde financeira. Seções em ordem:
+
+**Header de Pendências (Card Azul Marinho)**
+- Lado esquerdo: label "Pendências", valor Total (grande), breakdown Pessoais | Grupos
+- Lado direito: "Saldo Atual" (Receitas − total já pago) com botão olho para ocultar valor
+- Fundo: `bg-blue-950`, texto branco, valores positivos em verde, negativos em vermelho
+
+**Carrossel de Grupos**
+- Cards arrastáveis horizontalmente com fundo na cor do grupo + overlay escuro para legibilidade
+- Dados do card: nome, total de despesas do grupo, sua parte, quanto já pagou
+
+**Ações Rápidas (Grid 3×2)**
+Botões: Ver Grupos · Criar Grupo · Ver Despesas | Adicionar Despesa · Ver Receitas · Adicionar Receita
+
+**Feed de Vencimentos Críticos**
+- Próximas 5 despesas pendentes ordenadas por `due_date` ASC (vencidas primeiro)
+- Ícone + cor diferente: vermelho (vencida), laranja (hoje), neutro (futura)
+- Botão "Ver Todas" → `/expenses`
+
+**Análise Rápida**
+- Barras horizontais de despesas por Categoria (top 5) e Forma de Pagamento (top 4)
+- Cada barra proporcional ao valor total
+
+### 2. Visão Temporal (`calendar.tsx`)
+- Switch "Mensal" / "Personalizado"
+- **Mensal**: navegador de meses + calendário interativo (bolinha vermelha = despesa, verde = receita). Clique no dia filtra lista abaixo
+- **Personalizado**: date range picker em vez do calendário
+- Lista de transações com chips de filtro: Ambos / Somente Despesas / Somente Receitas
+
+### 3. Botão Central `add.tsx`
+Intercepta `tabPress` e abre `AddExpenseSheet` (suporta `initialType: 'EXPENSE' | 'REVENUE'`). O sheet trata ambos os tipos, parcelamento e recorrência.
+
+### 4. Settings (`settings.tsx`)
+Lista de opções que redirecionam para: Gerenciar Grupos · Gerenciar Categorias · Gerenciar Formas de Pagamento
+
+### 5. Perfil (`profile.tsx`)
+Nome e foto do usuário. Opções: Alterar dados · Redefinir senha · Notificações · Tema (Dark/Light) · Logout
+
+### Tela: Listagem de Despesas (`expenses/index.tsx`)
+- Sumarizador no topo (total filtrado)
+- Filtros: por grupo/amigo específico, por método de pagamento
+
+## Padrões de Componentização
+
+- Utilitários de formatação em `app/lib/format.ts` (`formatBRL`, `formatShortDate`) — nunca redefinir inline
+- Componentes UI genéricos em `app/components/ui/` com CVA (react-native-reusables style)
+- Componentes de feature em `app/components/features/<feature>/`
+- Qualquer padrão visual usado em ≥2 lugares vira componente reutilizável
+- Preferir primitivos do `@rn-primitives/*` quando disponível antes de construir do zero
+
 ## Fases de Desenvolvimento
 
 | Fase | Descrição |

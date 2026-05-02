@@ -1,8 +1,12 @@
-import { Model } from '@nozbe/watermelondb';
+import { Model, type Associations } from '@nozbe/watermelondb';
 import { date, field, readonly, text } from '@nozbe/watermelondb/decorators';
 
 export class Transaction extends Model {
   static table = 'transactions';
+
+  static associations: Associations = {
+    transaction_splits: { type: 'has_many', foreignKey: 'transaction_id' },
+  };
 
   @text('description') description!: string;
   @field('total_amount') totalAmount!: number;
