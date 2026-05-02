@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\joao.silva\\\\Documents\\\\Projetos\\\\dombills\" -Recurse -Force)",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
