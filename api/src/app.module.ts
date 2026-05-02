@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module';
 import { GroupsModule } from './groups/groups.module';
 import { PaymentMethodsModule } from './payment-methods/payment-methods.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { SyncModule } from './sync/sync.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TransactionsModule } from './transactions/transactions.module';
     CategoriesModule,
     PaymentMethodsModule,
     TransactionsModule,
+    SyncModule,
   ],
 })
 export class AppModule {}
